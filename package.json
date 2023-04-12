@@ -1,0 +1,20 @@
+{
+  "name": "wospbot",
+  "version": "1.0.0",
+  "description": "Another Discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "wosps",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.9.0",
+    "dotenv": "^16.0.3",
+    "npm": "^9.6.4"
+  }
+}
