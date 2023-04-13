@@ -20,28 +20,33 @@ module.exports = {
         const member = await interaction.guild.members.fetch(user.id);
 
         const errEmbed = new EmbedBuilder()
-            .setColor('#f86c68')
+            .setColor('#e74c3c')
             .setTitle('Error!')
             .setDescription(`You can't kick ${user.tag}!`)
+            .setTimestamp()
             .setFooter({
-                text: 'wospbot',
-                iconURL: 'https://i.imgur.com/zSpOI13.png'
+                text: interaction.member.user.tag,
+                iconURL: interaction.member.user.avatarURL()
             })
 
-        if (member.roles.highest.position >= interaction.member.roles.highest.position) 
+        if (member.roles.highest.position >= interaction.member.roles.highest.position) {
+            console.log('Target of Kick:' + member.roles.highest.position)
+            console.log('Sender of Kick:' + interaction.member.roles.highest.position)
             return interaction.reply({ embeds: [errEmbed], ephemeral: true});
+        }
         
-        await member.kick(reason);
+        await member.kick('Kicked by ' + interaction.member.tag + '. Reason: ' + reason);
         
         const successEmbed = new EmbedBuilder()
-            .setColor('#f86c68')
+            .setColor('#2ecc71')
             .setTitle(user.tag + ' was kicked!')
             .setDescription('Reason: ' + reason)  
+            .setTimestamp()
             .setFooter({
-                text: 'wospbot',
-                iconURL: 'https://i.imgur.com/zSpOI13.png'
+                text: interaction.member.user.tag,
+                iconURL: interaction.member.user.avatarURL()
             })
 
-        await interaction.reply({ embeds: [kickEmbed]});
+        await interaction.reply({ embeds: [successEmbed], ephemeral: true});
     },
 }
